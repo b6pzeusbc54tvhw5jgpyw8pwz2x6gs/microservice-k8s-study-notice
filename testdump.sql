@@ -36,13 +36,20 @@ CREATE TABLE NotiMethodGlobalSetting (
   PRIMARY KEY (noti_method_id)
 );
 
-
 CREATE TABLE NotiMethodEndpointSetting (
   noti_method_id varchar(255) NOT NULL,
   endpoint_id varchar(255) NOT NULL,
   enabled tinyint(1) DEFAULT 1,
   throttle_second int DEFAULT 0,
   follow_global_setting tinyint(1) DEFAULT 0,
+  PRIMARY KEY (noti_method_id, endpoint_id)
+);
+
+CREATE TABLE pendingNoti (
+  noti_method_id varchar(255) NOT NULL,
+  endpoint_id varchar(255) NOT NULL,
+  type varchar(20) NOT NULL,
+  lastOccurTime datetime,
   PRIMARY KEY (noti_method_id, endpoint_id)
 );
 

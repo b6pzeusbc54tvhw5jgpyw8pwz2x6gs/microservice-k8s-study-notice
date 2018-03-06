@@ -58,6 +58,9 @@
 
 ## API
 
+### Case4: 유저의 global noti 설정 조회
+GET /v1/globalSetting/:userId
+
 ### Case1: 유저가 엔드포인트를 등록했을때,
 POST /v1/endpointSetting/:userId/:endpointId
 insert record into UserEndpointSetting
@@ -71,21 +74,34 @@ PUT /v1/endpointSetting/:userId/:endpointId
 request parameter: { json }
 update record in UserEndpointSetting
 
-### Case4: 유저의 global noti 설정 조회
-GET /v1/globalSetting/:userId
+### Case6: 유저의 모든 notiMethod 조회
+GET /v1/notiMethod/:userId
 
-### Case5: 유저의 모든 specific-endpoint noti 설정 조회
+### Case6: 유저의 모든 specific-endpoint noti 설정 조회
 GET /v1/endpointSetting/:userId
 
-### Case5: 유저의 specific-endpoint noti 설정 조회
-GET /v1/endpointSetting/:userId/:endpointId
+### Case5: 유저의 specific-endpoint noti 설정 삭제
+POST /v1/endpointSetting/:notiMethodId/:endpointId
 
-### Case6: 특정 엔드포인트 실패 알림을 받았을때,
-POST /v1/fail/:endpointId
+### Case5: 유저의 specific-endpoint noti 설정 변경
+PUT /v1/endpointSetting/notiMethodId/:endpointId
 
-### Case7: 특정 엔드포인트 정보 변경 알림,
+### Case5: 유저의 specific-endpoint noti 설정 삭제
+DELETE /v1/endpointSetting/:notiMethodId/:endpointId
+
+
+### Case8: 특정 엔드포인트 정보 변경 알림,
 PUT /v1/endpointSetting/:endpointId
 
+### Case7: 특정 엔드포인트 실패 알림을 받았을때,
+POST /v1/failNoti/:endpointId
 
-## json
-https://mholt.github.io/json-to-go/
+### Case9: 유저의 현재 pending 중인 노티 정보 조회 (`throttle_second` 에 걸려서)
+GET /v1/failNoti/:userId
+
+
+## references
+- https://mholt.github.io/json-to-go/
+- https://medium.com/@etiennerouzeaud/how-to-create-a-basic-restful-api-in-go-c8e032ba3181
+- https://medium.com/@thedevsaddam/build-restful-api-service-in-golang-using-gin-gonic-framework-85b1a6e176f3
+- https://github.com/Massad/gin-boilerplate
